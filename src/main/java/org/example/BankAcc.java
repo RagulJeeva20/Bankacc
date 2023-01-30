@@ -1,18 +1,20 @@
 package org.example;
 import java.util.Scanner;
+import java.util.logging.*;
 public class BankAcc
 {
     String name;
     int accno;
     int balance;
+    Logger l=Logger.getLogger("tyler");
     Scanner s=new Scanner(System.in);
     Scanner c=new Scanner(System.in);
     BankAcc()
     {
-        System.out.println("enter name:");
+        l.info("enter name:");
 
         String a=c.next();
-        System.out.println("enter account no:");
+        l.info("enter account no:");
         int b=s.nextInt();
         name=a;
         accno=b;
@@ -20,16 +22,16 @@ public class BankAcc
     }
     void show()
     {
-        System.out.println("name:" + name + " " + "acc no:" + accno + " " + "balance:" +balance);
+        l.log(Level.INFO, () ->"name:" + name + " " + "acc no:" + accno + " " + "balance:" +balance);
     }
     void deposit()
     {
-        System.out.println("money you want to deposit");
+        l.info("money you want to deposit");
         int a=s.nextInt();
         balance=balance+a;
-        System.out.println("your money has been credited");
-        System.out.println("what you want to do now?\n 1.deposit \n2.withdrawl \n3.exit");
-        System.out.println("select:");
+        l.info("your money has been credited");
+        l.info("what you want to do now?\n 1.deposit \n2.withdrawl \n3.exit");
+        l.info("select:");
         int sel=s.nextInt();
         if (sel==1)
         {
@@ -46,19 +48,19 @@ public class BankAcc
     }
     void withdrawl()
     {
-        System.out.println("money you want to withdrawl");
+        l.info("money you want to withdrawl");
         int b=s.nextInt();
         if (b>balance)
         {
-            System.out.println("you dont have enough money to withdrawl");
+            l.info("you dont have enough money to withdrawl");
         }
         else
         {
             balance=balance-b;
         }
-        System.out.println("your money has been debited");
-        System.out.println("what you want to do now?\n 1.deposit \n2.withdrawl \n3.exit");
-        System.out.println("select:");
+        l.info("your money has been debited");
+        l.info("what you want to do now?\n 1.deposit \n2.withdrawl \n3.exit");
+        l.info("select:");
         int sel=s.nextInt();
         if (sel==1)
         {
